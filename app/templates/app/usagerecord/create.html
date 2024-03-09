@@ -1,0 +1,43 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div clas="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="mx-2 my-3">
+            <h2>利用記録の登録</h2>
+        </div>
+
+        <div class="mx-2">
+            <form method="POST" class="h-adr">
+                {% csrf_token %}
+                <!-- タグでフォームを生成 -->
+                <table class="table table-striped " border="3">
+                    <tr>
+                        <th><label for="id_useroverview_fk">カード番号 No.</label></th>
+                        <td>
+                            <input type="text" name="useroverview_fk" pattern="^[0-9]+$" maxlength="8" required id="id_useroverview_fk">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="id_use_session">利用時間帯</label></th>
+                        <td>
+                            <select name="use_session" id="id_use_session">
+                                <option value="1" selected>午前の部</option>
+                                <option value="2">午後の部</option>
+                                <option value="3">夜の部</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+
+                <br/>
+                <button type="submit" class="btn btn-primary">登録</button>
+                <button type="submit" class="btn btn-secondary" onclick="javascript:history.go(-1);" name="back" >戻る</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

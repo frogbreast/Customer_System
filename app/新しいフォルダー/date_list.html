@@ -1,0 +1,43 @@
+{% extends "../base.html" %}
+
+{% block content %}
+
+<h2>利用日一覧</h2>
+
+<!--検索機能-->
+<form action="" method="get">
+    <input name="query" value="{{ request.GET.query }}" type="text" />
+    <button type="submit">検索する</button>
+</form>
+
+<!--利用者一覧に遷移-->
+<td class="text-end">
+    <a href="{% url 'index' %}" class="btn btn-info">利用者一覧へ</a>
+</td>
+
+<!-- データ表示 -->
+<table class="table" border="2">
+    <thead>
+        <th>利用日</th>
+       
+        <th></th>
+        
+        <th>
+            <a href="{% url 'ur_create' %}" class="btn btn-primary">新規登録</a>
+        </th>
+        
+    </thead>
+    <tbody>
+        {% for item in usagerecords %}
+        <tr>
+            <!-- 利用日 -->
+            <td><a href="{% url 'ur_session_list' %}">{{ item.use_date }}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!--ページング機能-->
+{% include 'app/pagination.html' %}
+
+{% endblock %}

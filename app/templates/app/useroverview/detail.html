@@ -1,0 +1,76 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div clas="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="mx-2 my-3">
+            <h2>利用者の詳細</h2>
+        </div>
+
+        <!-- 詳細なデータの表示-->
+        <div class="mx-2">
+            <table class="table" border="3">
+                <tr>
+                    <th><label for="id_id">カード番号</label></th>
+                    <td>
+                        No. {{ userdetailviews.id }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_name">氏名</label></th>
+                    <td>
+                        {{ userdetailviews.name }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_birthday">生年月日</label></th>
+                    <td>
+                        {{ userdetailviews.birthday }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_gender">性別</label></th>
+                    <td>
+                        {{ userdetailviews.get_gender_display }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_zip_code">郵便番号</label></th>
+                    <td>
+                        {{ userdetailviews.zip_code1 }}-{{ userdetailviews.zip_code2 }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_address">住所</label></th>
+                    <td>
+                        {{ userdetailviews.address }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_phone_number">電話番号</label></th>
+                    <td>
+                        {{ userdetailviews.phone_number }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_temperature">体温</label></th>
+                    <td>
+                        {{ userdetailviews.temperature }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_created_date">カード作成日</label></th>
+                    <td>
+                        {{ userdetailviews.created_date }}
+                    </td>
+                </tr>
+            </table>
+
+            <button type="submit" class="btn btn-secondary" onclick="javascript:history.go(-1);" name="back" >戻る</button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
