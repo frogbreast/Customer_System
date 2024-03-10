@@ -1,7 +1,7 @@
 from re import U
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from requests import session
+#from requests import session
 from app.models import UserOverview, UsageRecord
 from app.forms import UserOverviewForm, UsageRecordForm
 from django.urls import reverse_lazy

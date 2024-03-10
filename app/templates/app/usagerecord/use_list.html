@@ -42,14 +42,15 @@
                 <tbody>
                     {% for item in usagerecords %}
                         <tr>
-                            <!-- カード番号 -->
-                            <td><a href="{% url 'detail' item.useroverview_fk %}">No. {{ item.useroverview_fk }}</a></td>
-                            
                             <!-- 利用日 -->
                             <td>{{ item.use_date }}</td>
                         
                             <!-- 利用時間帯 -->
                             <td>{{ item.get_use_session_display }}</td>
+
+                            <!-- カード番号 -->
+                            <td><a href="{% url 'detail' item.useroverview_fk %}">No. {{ item.useroverview_fk }}</a></td>
+
                             <!--編集-->
                             <td class="">
                                 <a href="{% url 'ur_update' item.id %}" class="btn btn-success">編集</a>
