@@ -45,14 +45,14 @@
                             <td><a href="{% url 'detail' item.id %}">{{ item.name }}</a></td>
                             <!--作成日-->
                             <td>{{ item.created_date }}</td>
-                            
+                            <!--編集-->
                             <td class="text-end">
                                 <a href="{% url 'update' item.id %}" class="btn btn-success">編集</a>
                             </td>
+                            <!--削除モーダルを表示-->
                             <td>
                                 <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-Modal-{{ item.id }}">削除</a></td>
-                                {% include 'app/useroverview/delete.html' %}
-                                
+                                {% include 'app/useroverview/delete.html' %}                              
                             </td>
                         </tr>
                     {% endfor %}

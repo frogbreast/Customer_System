@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 
-
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,7 +49,19 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    # ログイン
+    'app.middleware.auth.AuthMiddleware',
 ]
+
+# 認証リダイレクト設定
+# LOGINが必要なビューにアクセスがあった場合の遷移先
+LOGIN_URL = "login"
+# LOGIN後のリダイレクト先
+LOGIN_REDIRECT_URL = "index"
+# LOGOUT後のリダイレクト先
+LOGOUT_REDIRECT_URL = "index"
+
 
 # Sessionの保存先をキャッシュに
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"

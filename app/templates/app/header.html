@@ -9,7 +9,8 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <!--左寄せになる-->
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'admin:index'%}">管理サイト</a>
                 </li>
@@ -22,6 +23,20 @@
                 <!--利用記録に遷移-->
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'ur_use_list'%}">利用記録</a>
+                </li>
+            </ul>
+            <!--右寄せになる-->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <!--ログインしているならログアウトを表示-->
+                    {% if user.is_authenticated %}
+                        <a type="button" class="btn btn-danger" aria-current="page" data-bs-toggle="modal" data-bs-target="#logout-Modal" href="{% url 'logout' %}">ログアウト</a>
+                        {% include 'registration/logout.html' %}
+
+                    <!--していないならログインを表示-->
+                    {% else %}
+                        <a type="button" class="btn btn-success" class="nav-link active" aria-current="page" href="{% url 'login' %}">ログイン</a>
+                    {% endif %}
                 </li>
             </ul>
         </div>

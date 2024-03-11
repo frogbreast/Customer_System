@@ -108,5 +108,8 @@ class UR_UpdateView(UpdateView):
     form_class = UsageRecordForm
     success_url = reverse_lazy("ur_use_list")
 
-
-
+# 利用記録削除ビュー
+class UR_DeleteView(DeleteView):
+    template_name = "app/usagerecord/index.html"
+    model = UsageRecord
+    success_url = reverse_lazy("ur_use_list")

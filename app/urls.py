@@ -21,6 +21,7 @@ urlpatterns = [
     path('ur_create/', views.UR_CreateView.as_view(), name='ur_create'),
     # 更新・編集
     path('ur_update/<int:pk>/', views.UR_UpdateView.as_view(), name='ur_update'),
-
+    # 削除
+    path('delete/<int:pk>/', views.UR_DeleteView.as_view(), name='ur_delete'),
 
 ]
