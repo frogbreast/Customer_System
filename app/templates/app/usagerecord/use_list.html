@@ -1,73 +1,73 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-
-<div clas="row">
-    <div class="col-md-8 offset-md-2">
-        <div class="mx-2 my-3">
-            <h2>利用記録</h2>
-        </div>
-
-        <div class="d-flex flex-row">
-            <div class="m-2">
-                <!--検索機能-->
-                <form action="" method="GET">
-                    <input type="date" name="query_date" value="{{ request.GET.query_date }}" >
-
-                    <select name="query_session"  id="" value="{{ request.GET.query_session }}" >
-                        <option value="">-------</option>
-                        <option value="1">午前の部</option>
-                        <option value="2">午後の部</option>
-                        <option value="3">夜の部</option>
-                    </select>
-
-                    <button type="submit">検索する</button>
-                </form>
+<div class="container-fluid">
+    <div clas="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="mx-2 my-3">
+                <h2>利用記録</h2>
             </div>
-        </div>
 
-        <!-- データ表示 -->
-        <div class="mx-2">
-            <table class="table table-striped" border="3">
-                <thead>
-                    <th>カード番号</th>
-                    <th>利用日</th>
-                    <th>利用時間帯</th>
-                    <th>
-                        <a href="{% url 'ur_create' %}" class="btn btn-primary">新規登録</a>
-                    </th>
-                    <th></th>
+            <div class="d-md-flex flex-row">
+                <div class="m-2">
+                    <!--検索機能-->
+                    <form action="" method="GET">
+                        <input type="date" name="query_date" value="{{ request.GET.query_date }}" >
 
-                </thead>
-                <tbody>
-                    {% for item in usagerecords %}
-                        <tr>
-                            <!-- 利用日 -->
-                            <td>{{ item.use_date }}</td>
-                        
-                            <!-- 利用時間帯 -->
-                            <td>{{ item.get_use_session_display }}</td>
+                        <select name="query_session" id="" value="{{ request.GET.query_session }}" >
+                            <option value="">-------</option>
+                            <option value="1">午前の部</option>
+                            <option value="2">午後の部</option>
+                            <option value="3">夜の部</option>
+                        </select>
 
-                            <!-- カード番号 -->
-                            <td><a href="{% url 'detail' item.useroverview_fk %}">No. {{ item.useroverview_fk }}</a></td>
+                        <button type="submit">検索する</button>
+                    </form>
+                </div>
+            </div>
 
-                            <!--編集-->
-                            <td class="">
-                                <a href="{% url 'ur_update' item.id %}" class="btn btn-success">編集</a>
-                            </td>
-                            <!--記録の削除-->
-                            <td>
-                                <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-Modal-{{ item.id }}">削除</a></td>
-                                {% include 'app/usagerecord/delete.html' %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <!-- データ表示 -->
+            <div class="table-scroll">
+                <table class="table table-striped" border="3">
+                    <thead>
+                        <th>利用日</th>
+                        <th>利用時間帯</th>
+                        <th>カード番号</th>
+                        <th></th>
+                        <th>                        
+                            <a href="{% url 'ur_create' %}" class="btn btn-primary">新規登録</a>
+                        </th>
+
+                    </thead>
+                    <tbody>
+                        {% for item in usagerecords %}
+                            <tr>
+                                <!-- 利用日 -->
+                                <td>{{ item.use_date }}</td>
+                            
+                                <!-- 利用時間帯 -->
+                                <td>{{ item.get_use_session_display }}</td>
+
+                                <!-- カード番号 -->
+                                <td><a href="{% url 'detail' item.useroverview_fk %}">No. {{ item.useroverview_fk }}</a></td>
+
+                                <!--編集-->
+                                <td class="text-end">
+                                    <a href="{% url 'ur_update' item.id %}" class="btn btn-success">編集</a>
+                                </td>
+                                <!--記録の削除-->
+                                <td>
+                                    <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-Modal-{{ item.id }}">削除</a></td>
+                                    {% include 'app/usagerecord/delete.html' %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-
 <!--ページング機能-->
 {% include 'app/pagination.html' %}
 

@@ -1,0 +1,8 @@
+.table-scroll {
+    overflow-x: scroll;
+}
+  
+table {
+	width: 100%;
+	white-space: nowrap;
+}
